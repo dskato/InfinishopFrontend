@@ -1,0 +1,140 @@
+<div class="main-cont-reg">
+  <h1 class="register-text" id="reg-title">Completa tus datos</h1>
+  <form [formGroup]="registerForm" class="card-cont">
+    <div class="card-horizontal-cont">
+      <div class="txt-input-reg">
+        <label class="input-lbl-title">Nombre</label>
+        <input
+          class="txt-inpt"
+          id="firstname"
+          type="text"
+          required=""
+          formControlName="firstname"
+        />
+        <label class="input-lbl-subtitle"
+          >Ingrésalo tal como figura en tu documento.</label
+        >
+        <div
+          *ngIf="
+            registerForm.controls.firstname.invalid &&
+            (registerForm.controls.firstname.dirty ||
+              registerForm.controls.firstname.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="registerForm.controls.firstname.errors?.['required']">
+            El nombre es requerido.
+          </div>
+          <div *ngIf="registerForm.controls.firstname.errors?.['minlength']">
+            No cumple con el minimo de caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="txt-input-reg">
+        <label class="input-lbl-title">Apellido</label>
+        <input
+          class="txt-inpt"
+          id="lastname"
+          type="text"
+          required=""
+          formControlName="lastname"
+        />
+        <label class="input-lbl-subtitle"
+          >Ingrésalo tal como figura en tu documento.</label
+        >
+        <div
+          *ngIf="
+            registerForm.controls.lastname.invalid &&
+            (registerForm.controls.lastname.dirty ||
+              registerForm.controls.lastname.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="registerForm.controls.lastname.errors?.['required']">
+            El apellido es requerido.
+          </div>
+          <div *ngIf="registerForm.controls.lastname.errors?.['minlength']">
+            No cumple con el minimo de caracteres.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-horizontal-cont">
+      <div class="txt-input-reg">
+        <label class="input-lbl-title">E-mail</label>
+        <input
+          class="txt-inpt"
+          id="email"
+          type="text"
+          required=""
+          formControlName="email"
+        />
+        <label class="input-lbl-subtitle"
+          >Asegúrate de tener acceso a este e-mail.
+        </label>
+        <div
+          *ngIf="
+            registerForm.controls.email.invalid &&
+            (registerForm.controls.email.dirty ||
+              registerForm.controls.email.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="registerForm.controls.email.errors?.['required']">
+            El email es requerido.
+          </div>
+          <div *ngIf="registerForm.controls.email.errors?.['email']">
+            El formato del e-mail no es el correcto.
+          </div>
+        </div>
+      </div>
+      <div class="txt-input-reg">
+        <label class="input-lbl-title">Clave</label>
+        <input
+          class="txt-inpt"
+          id="password"
+          type="password"
+          required=""
+          formControlName="password"
+          name="password"
+        />
+        <input
+          class="txt-inpt"
+          id="passwordconfirm"
+          type="password"
+          required=""
+          formControlName="passwordconfirm"
+          name="passwordconfirm"
+        />
+        <label class="input-lbl-subtitle">Usa entre 6 y 20 caracteres</label>
+        <div
+          *ngIf="
+            registerForm.controls.password.invalid &&
+            (registerForm.controls.password.dirty ||
+              registerForm.controls.password.touched) &&
+            registerForm.controls.passwordconfirm.invalid &&
+            (registerForm.controls.passwordconfirm.dirty ||
+              registerForm.controls.passwordconfirm.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="registerForm.controls.password.errors?.['required'] || registerForm.controls.passwordconfirm.errors?.['required']"
+          >
+            El clave es requerida.
+          </div>
+          <div
+            *ngIf="registerForm.controls.password.errors?.['pattern'] && registerForm.controls.passwordconfirm.errors?.['pattern']"
+          >
+            La clave debe contener: 1 numero, 1 letra mayuscula, 1 caracter
+            especial.
+          </div>
+        </div>
+        <div class="alert alert-danger" id="notmatchedlabel" *ngIf="registerForm.errors?.['notmatched']">
+          Las claves no coinciden.
+        </div>
+      </div>
+    </div>
+  </form>
+  <button (click)="registerUser()" class="register-button">Continuar</button>
+</div>

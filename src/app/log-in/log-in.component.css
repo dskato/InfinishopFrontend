@@ -1,0 +1,155 @@
+/* ------------------- Main cont S -------------------------------------------------------------- */
+
+.main-cont {
+  background-color: #929aab;
+  width: 500px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  padding: 20px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+/* ------------------- Main cont n -------------------------------------------------------------- */
+
+.login-text {
+  font-family: "Mandali", sans-serif;
+  color: white;
+}
+
+#title-text {
+  color: white;
+  font-weight: bolder;
+  width: 80%;
+  align-self: center;
+  text-align: center;
+}
+#pass-recovery-txt{
+  text-decoration: underline;
+}
+
+#btn-login{
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 60%;
+  font-size: medium;
+  border-radius: 30px;
+  color: black;
+  border: 1px solid #4b4b4b87;
+}
+
+#btn-login:hover{
+  background-color: #393E46;
+  color: white;
+}
+
+.btn-outline-dark-google{
+  background-color: white;
+  color: black;
+  font-family: "Mandali", sans-serif;
+  width: 18rem;
+}
+
+.btn-outline-dark-google:hover{
+  background-color: #393E46;
+  color: white;
+}
+#btn-text-g{
+  color: black;
+}
+#btn-text-g:hover{
+  color: white;
+}
+
+.login-button-fb {
+  display: inline-block;
+  cursor: pointer;
+  width: 18rem;
+}
+
+.login-button-fb:hover {
+  background: rgb(55, 105, 214);
+  width: 18rem;
+}
+
+.login-facebook-icon {
+  background-color: #3b5998;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 48px;
+  text-align: center;
+  height: 48px;
+  width: 58px;   
+  float: left;
+}
+
+.login-facebook-text {
+  color: black;
+  font-family: "Mandali", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 46px;
+  text-align: center;
+  width: 18rem;
+  background-color: rgba(255, 255, 255, 0.942);
+  padding-left: 58px;
+  border: 1px solid #3b5998;
+}
+/* ------------------- Text input style s -------------------------------------------------------------- */
+
+.input-container {
+  position: relative;
+  margin-bottom: 10%;
+  width: 80%;
+}
+.input-container label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  font-family: "Mandali", sans-serif;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+.input-container input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: #fff;
+}
+.input-container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+  top: -12px;
+  font-size: 12px;
+}
+/* ------------------- Text input style e -------------------------------------------------------------- */
+
+@media screen and (max-width: 500px) {
+  .main-cont {
+    width: 70%;
+    height: 70%;
+  }
+}

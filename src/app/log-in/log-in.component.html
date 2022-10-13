@@ -1,0 +1,49 @@
+<div [formGroup]="logInForm" class="main-cont">
+  <h1 class="login-text" id="title-text">Iniciar Sesion</h1>
+
+
+  <div class="input-container">
+    <input type="text" required="" formControlName="email"/>
+    <label>Correo</label>
+  </div>
+
+  <div class="input-container">
+    <input type="text" required="" formControlName="password" />
+    <label>Contrasena</label>
+  </div>
+
+  <p  href="#" class="login-text" id="pass-recovery-txt">Olvidaste tu contrasena?</p>
+
+  <button class="login-text" id="btn-login" (click)="signInWithForm()" >Iniciar Sesion</button>
+  <p class="login-text">O iniciar sesion con</p>
+
+  <!-- Google login btn - start -->
+  <div class="row">
+    <div class="col-md-3">
+      <a mat-raised-button class="btn btn-outline-dark-google"  role="button" style="text-transform:none" (click)="signInWithGoogle()">
+        <img id="btn-text-g" width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+        Continuar con Google
+      </a>
+    </div>
+  </div>
+  
+  <!-- Minified CSS and JS -->
+  <link   rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+          crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+          crossorigin="anonymous">
+  </script>
+  <!-- Google login btn - end -->
+
+  <div mat-raised-button class="login-button-fb" (click)="signInWithFB()">
+    <div class="login-facebook-icon">f</div>
+    <div class="login-facebook-text">Continuar con Facebook</div>
+  </div>
+
+  <p class="login-text">No tienes cuenta?</p>
+
+  <p  href="#" class="login-text" id="pass-recovery-txt" routerLink="/register" type="button">Registrar cuenta</p>
+</div>
