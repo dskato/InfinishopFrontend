@@ -1,0 +1,208 @@
+@import "src/assets/styles/my-themes.scss";
+
+/*MAIN CONTS ---------------------------------------------------------------*/
+
+.main-cont {
+  width: 100%;
+  background-color: white;
+}
+#first-title {
+}
+.register-text-title {
+  margin-top: 3%;
+}
+.form-cont-reg {
+  width: 50%;
+  margin: 0 auto;
+}
+.card-personal-data {
+  background-color: mat-color($my-palette-primary);
+  height: fit-content;
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*INPUTS ---------------------------------------------------------------*/
+
+.horiz-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  justify-content: space-around;
+}
+
+.alert-danger{
+  background-color: #dfa316;
+  color: mat-color($my-palette-primary) !important;
+  padding: 2px;
+  outline: none;
+  border: none;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+#horiz-cont-pass {
+  height: 50%;
+  justify-content: space-around;
+}
+
+.frmfield-inpt {
+  width: 47%;
+  height: 40%;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-self: center;
+  margin-bottom: 12px;
+}
+
+.password-cont {
+  width: 47%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#pass-inpt {
+  width: 100%;
+}
+
+::ng-deep .form-cont-reg {
+  .mat-form-field-underline {
+    color: white !important;
+    background-color: white !important;
+  }
+
+  .mat-form-field {
+    background-color: #525252 !important;
+    border-radius: 6px;
+    padding: 4px;
+  }
+
+  .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: white !important;
+  }
+
+  .mat-form-field-label {
+    /*change color of label when focused*/
+    color: white !important;
+  }
+
+  .mat-focused .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #dfa316 !important;
+  }
+  .mat-focused .mat-form-field-label {
+    /*change color of label when focused*/
+    color: #dfa316 !important;
+  }
+  /* to change selected item color in the select list */
+  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #e6b31e !important;
+  }
+
+  .mat-select-value {
+    color: white !important;
+  }
+}
+
+.lbl-inpt {
+}
+.inpt {
+  width: 100%;
+  color: white;
+}
+.inpt::placeholder {
+  color: #cacaca;
+}
+
+/*INPUTS - mechanical---------------------------------------------------------------*/
+/*  border: 2px #e6b31e solid;*/
+
+#hcontm {
+  height: 25%;
+  width: 100%;
+  margin-bottom: 12px;
+}
+#cardmechanics {
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
+  
+}
+#ddcont {
+  width: fit-content;
+  height: fit-content;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-self: center;
+  display: grid;
+}
+
+#ddcont{
+  width: 100%;
+  background-color: red;
+}
+
+.slct-lbl {
+  font-size: 0.9rem;
+  text-align: center;
+}
+.slct {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  font-size: 0.9rem;
+  text-align: center;
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hcontm-chips{
+  height: 8%;
+}
+
+.service-chip-cont{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.service-box{
+  align-self: center;
+  background-color: #dfa316 !important;
+  color: mat-color($my-palette-primary) !important;
+  
+}
+
+.btn-cont{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2%;
+}
+.btn-continue{
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+  width: 90% !important;
+  min-width: unset !important;
+  border-radius: 25px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  align-self: center;
+}
+
+/*footer---------------------------------------------------------------*/
+.tfooter{
+  background-color: mat-color($my-palette-primary);
+  margin-top: 4%;
+}

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NavHeaderComponent } from './nav-header.component';
 
+import { AddpriceDialogComponent } from './addprice-dialog.component';
 
-describe('NavHeaderComponent', () => {
-  let component: NavHeaderComponent;
-  let fixture: ComponentFixture<NavHeaderComponent>;
+describe('AddpriceDialogComponent', () => {
+  let component: AddpriceDialogComponent;
+  let fixture: ComponentFixture<AddpriceDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavHeaderComponent ]
+      declarations: [ AddpriceDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NavHeaderComponent);
+    fixture = TestBed.createComponent(AddpriceDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,64 @@
+@import "@angular/material/theming";
+@import "src/assets/styles/my-themes.scss";
+
+.nav-bar{
+  position: absolute;
+  width: 100%;
+}
+.main-cont {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.card-info-reg {
+  align-items: center;
+  background-color: mat-color($my-palette-primary);
+  height: 60%;
+  align-self: center;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 4px 4px rgba(0,0,0,.2), 0 8px 8px 0 rgba(0,0,0,.14), 0 8px 8px 0 rgba(0,0,0,.12) !important;
+  transform: translate3d(0,0,0);
+}
+.card-title-reg{
+  width: 90%;
+  height: 13%;
+  background-color: #dfa316;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+  0 1px 1px 0 rgba(0,0,0,1), 
+  0 1px 3px 0 rgba(0,0,0,1);
+}
+.title-lbl {
+  color: mat-color($my-palette-primary);
+  width: 100%;
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+  text-align: center;
+  
+}
+.info-lbl {
+  margin-top: 20%;
+  color: #fcfaf1;
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+  text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.btn-continue {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+  margin-top: auto;
+  width: 60% !important;
+  min-width: unset !important;
+  height: 10% !important;
+  min-height: unset !important;
+}

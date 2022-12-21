@@ -1,0 +1,146 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+// GAMA COLORES
+$my-primary-color: (
+  50: #e7e7e7,
+  100: #c2c2c2,
+  200: #9a9a9a,
+  300: #717171,
+  400: #525252,
+  500: #343434,
+  600: #2f2f2f,
+  700: #272727,
+  800: #212121,
+  900: #151515,
+  A100: #ef6e6e,
+  A200: #ea4040,
+  A400: #f60000,
+  A700: #dd0000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$my-accent-color: (
+  50: #fcf6e4,
+  100: #f8e8bc,
+  200: #f3d98f,
+  300: #eeca62,
+  400: #eabe40,
+  500: #e6b31e,
+  600: #e3ac1a,
+  700: #dfa316,
+  800: #db9a12,
+  900: #d58b0a,
+  A100: #ffffff,
+  A200: #ffebcc,
+  A400: #ffd699,
+  A700: #ffcc80,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #000000,
+    700: #000000,
+    800: #000000,
+    900: #000000,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$my-warn-color: (
+  50: #f9e0e0,
+  100: #f0b3b3,
+  200: #e68080,
+  300: #db4d4d,
+  400: #d42626,
+  500: #cc0000,
+  600: #c70000,
+  700: #c00000,
+  800: #b90000,
+  900: #ad0000,
+  A100: #ffd7d7,
+  A200: #ffa4a4,
+  A400: #ff7171,
+  A700: #ff5858,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+// PALETA DE COLORES
+$my-palette-primary: mat-palette($my-primary-color);
+$my-palette-accent: mat-palette($my-accent-color);
+$my-palette-warn: mat-palette($my-warn-color);
+
+// TEMA PROPIO
+$theme: mat-light-theme(
+  (
+    color: (
+      primary: $my-palette-primary,
+      accent: $my-palette-accent,
+      warn: $my-palette-warn,
+    ),
+  )
+);
+
+// APLICAR NUESTRO TEMA A ANGULAR
+@include angular-material-theme($theme);
+@include mat-core-theme($theme);
+@include mat-autocomplete-theme($theme);
+@include mat-button-theme($theme);
+@include mat-button-toggle-theme($theme);
+@include mat-card-theme($theme);
+@include mat-checkbox-theme($theme);
+@include mat-chips-theme($theme);
+@include mat-datepicker-theme($theme);
+@include mat-dialog-theme($theme);
+@include mat-grid-list-theme($theme);
+@include mat-icon-theme($theme);
+@include mat-input-theme($theme);
+@include mat-list-theme($theme);
+@include mat-menu-theme($theme);
+@include mat-progress-bar-theme($theme);
+@include mat-progress-spinner-theme($theme);
+@include mat-radio-theme($theme);
+@include mat-select-theme($theme);
+@include mat-sidenav-theme($theme);
+@include mat-slide-toggle-theme($theme);
+@include mat-slider-theme($theme);
+@include mat-tabs-theme($theme);
+@include mat-toolbar-theme($theme);
+@include mat-tooltip-theme($theme);

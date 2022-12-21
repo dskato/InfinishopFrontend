@@ -1,0 +1,12 @@
+.btn-comment{
+    background-color: #E6B31E!important;
+}
+.btn-comment:hover{
+    background-color: #cfa11b!important;
+}
+.comment-ipt{
+    background-color: #e8e8e8!important;
+}
+.iconLike:hover{
+    color: red!important;
+}

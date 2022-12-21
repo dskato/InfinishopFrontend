@@ -1,0 +1,32 @@
+<app-nav-header-simple class="nav-bar"></app-nav-header-simple>
+<div class="main-cont">
+  <mat-card class="card-info-reg">
+    <mat-card class="card-title-reg">
+      <mat-label class="title-lbl">Registrarse como usuario</mat-label>
+    </mat-card>
+
+    <mat-label class="info-lbl"
+      >Podra visualizar, comparar y contactar a las
+      Mecanicas o Distribuidoras de Repuestos
+    </mat-label>
+
+    <button class="btn-continue" mat-raised-button color="accent" (click)="navigateUserRegister()">
+      Continuar
+    </button>
+  </mat-card>
+
+  <mat-card class="card-info-reg">
+    <mat-card class="card-title-reg">
+      <mat-label class="title-lbl">Registrarse como Mecanico o Vendedor</mat-label>
+    </mat-card>
+
+    <mat-label class="info-lbl"
+      >
+      Podra registrar su sucursal de venta de repuestos automotrices o registrar su Mecanica y ofertar sus servicios
+    </mat-label>
+
+    <button class="btn-continue" mat-raised-button color="accent" (click)="navigateMechanicRegister()">
+      Continuar
+    </button>
+  </mat-card>
+</div>

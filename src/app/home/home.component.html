@@ -1,2 +1,54 @@
-<p>home works!</p>
-<button (click)="logout()">logout</button>
+<app-nav-header></app-nav-header>
+<div
+  id="maincont"
+  class="uk-container uk-container-xlarge uk-margin-large-left uk-margin-large-right"
+>
+  <ul class="uk-list" *ngFor="let h of homeList">
+    <div
+      class="uk-card uk-card-default uk-align-center uk-card-body uk-margin-medium-top uk-margin-medium-bottom uk-width-1-1@m"
+    >
+      <h3 class="uk-text-lead uk-text-bold">{{ h.name }}</h3>
+      <p class="uk-text-normal">{{ h.description }}</p>
+      <a
+        class="uk-text-small uk-text-bold uk-align-center"
+        href="{{ link }}"
+        (click)="getCurrentLinkClicked(h)"
+        >{{ h.webPage }}
+      </a>
+      <p class="uk-text-small uk-text-light">
+        {{ "Contacto: " + h.contactPhone }}
+      </p>
+
+      <div class="uk-flex">
+        <div class="uk-container uk-container-small uk-flex uk-align-right">
+          <p class="uk-text-small uk-text-light">Comentarios</p>
+        </div>
+
+        <div class="uk-container uk-container-small uk-flex uk-align-left">
+          <p class="uk-text-small uk-text-light">{{getLikesById(h.branchMechanicsId)}}</p>
+          <span class="uk-margin-small-left iconLike" uk-icon="heart" (click)="doLike(h)"></span>
+        </div>
+      </div>
+
+      <div class="uk-container-large uk-margin-medium-left uk-align-center" >
+        <div class="uk-flex uk-flex-column ">
+          <p class="uk-text-normal uk-text-bold">{{ currentUser.name }}</p>
+
+          <form class="uk-flex ">
+            <div class="uk-margin uk-form-width-large uk-align-lefts">
+              <input
+                class="uk-input comment-ipt"
+                type="text"
+                placeholder="Comentario "
+                aria-label="Input"
+              />
+            </div>
+            <button class="uk-button uk-button-default uk-align-right btn-comment" >Comentar</button>
+          </form>
+
+        </div>
+      </div>
+      <hr class="uk-divider-icon" />
+    </div>
+  </ul>
+</div>

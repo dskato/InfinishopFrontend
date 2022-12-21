@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Precio</h1>
+<div mat-dialog-content>
+  <p>Agregue el precio del servicio</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Precio</mat-label>
+    <input matInput [(ngModel)]="data.price">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data.price" cdkFocusInitial>Agregar</button>
+</div>

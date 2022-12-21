@@ -1,0 +1,13 @@
+.uk-navbar-container {
+  background-color: #343434 !important;
+}
+
+.title-dp {
+  color: white !important;
+}
+#btn-search {
+  background-color: #e6b31e !important;
+}
+#btn-search:hover {
+  background-color: #cfa11b !important;
+}

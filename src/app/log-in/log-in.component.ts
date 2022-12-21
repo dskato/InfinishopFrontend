@@ -45,8 +45,8 @@ export class LogInComponent implements OnInit {
             provider: user.provider,
           })
           .subscribe((authToken: any) => {
-            console.log(authToken);
-            console.log(authToken['token']);
+            //console.log(authToken);
+            console.log("Token: "+authToken['token']);
             this.router.navigate(['/home']);
             //Save token in cookie locally
             Cookie.set('jwtToken', authToken['token']);
@@ -115,6 +115,10 @@ export class LogInComponent implements OnInit {
   }
   showTUserOrPasswordInvalid() {
     this.notifyService.showError('Correo o contrasena invalidos.', 'Error');
+  }
+
+  navigateToRegisterOptions() : void{
+    this.router.navigate(['/registeroption']);
   }
 
   ngOnInit(): void {}

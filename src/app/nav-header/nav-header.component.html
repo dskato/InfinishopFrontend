@@ -1,1 +1,57 @@
-<p>nav-header works!</p>
+<nav class="uk-navbar-container" color="primary" uk-navbar >
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li class="uk-active uk-margin-small-left">
+        <a class="title-dp" href="#">InfoAutos</a>
+      </li>
+
+      <li>
+        <a class="title-dp" >{{typeOfVehicle}}</a>
+        <div class="uk-navbar-dropdown">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li class="uk-active" *ngFor="let v of vehicles" value="v"   >
+             <label (click)="getGlobalServicesByOption(v)" href="" > {{ v.name }}</label>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <a class="title-dp" href="#">{{provinceName}}</a>
+        <div class="uk-navbar-dropdown">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li class="uk-active" *ngFor="let p of provinceList" value="p">
+              <label (click)="getSelectedProvince(p)" href="#">{{ p.provinceName }}</label>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <a class="title-dp" href="#">{{serviceName}}</a>
+        <div class="uk-navbar-dropdown">
+          <ul class="uk-nav uk-navbar-dropdown-nav">
+            <li class="uk-active" *ngFor="let t of gmsList" value="t">
+              <label href="#" (click)="getSelectedService(t)">{{t.gmsName}}</label>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="uk-navbar-right">
+    <button
+      id="btn-search"
+      class="uk-button uk-button-default uk-margin-small-right"
+    >
+      Buscar
+    </button>
+    <button
+      id="btn-search"
+      class="uk-button uk-button-default uk-margin-small-right"
+      (click)="navigateToLogIn()"
+    >
+      Iniciar Sesion
+    </button>
+  </div>
+</nav>

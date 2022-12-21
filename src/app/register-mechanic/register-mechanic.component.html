@@ -1,0 +1,306 @@
+<app-nav-header-simple class="simple-nav"></app-nav-header-simple>
+
+<div class="main-cont">
+  <form class="form-cont-reg" [formGroup]="registerForm">
+    <h1 class="register-text-title" id="first-title">Datos Personales</h1>
+    <mat-card class="card-personal-data">
+      <div class="horiz-cont">
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Nombre</mat-label>
+          <input
+            name="firstname"
+            class="inpt"
+            matInput
+            placeholder="Ingrésalo tal como figura en tu documento."
+            value=""
+            formControlName="firstname"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Apellido</mat-label>
+          <input
+            class="inpt"
+            matInput
+            placeholder="Ingrésalo tal como figura en tu documento."
+            value=""
+            formControlName="lastname"
+            name="lastname"
+          />
+        </mat-form-field>
+      </div>
+
+      <div
+        *ngIf="
+          registerForm.controls.firstname.invalid &&
+          (registerForm.controls.firstname.dirty ||
+            registerForm.controls.firstname.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="registerForm.controls.firstname.errors?.['required']">
+          El nombre es requerido.
+        </div>
+        <div *ngIf="registerForm.controls.firstname.errors?.['minlength']">
+          No cumple con el minimo de caracteres.
+        </div>
+      </div>
+      <div
+          *ngIf="
+            registerForm.controls.lastname.invalid &&
+            (registerForm.controls.lastname.dirty ||
+              registerForm.controls.lastname.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="registerForm.controls.lastname.errors?.['required']">
+            El apellido es requerido.
+          </div>
+          <div *ngIf="registerForm.controls.lastname.errors?.['minlength']">
+            No cumple con el minimo de caracteres.
+          </div>
+        </div>
+
+      <div class="horiz-cont" id="horiz-cont-pass">
+        <mat-form-field class="frmfield-inpt" id="email-frmfld">
+          <mat-label class="lbl-inpt">Email</mat-label>
+          <input
+            class="inpt"
+            matInput
+            placeholder="Asegúrate de tener acceso a este e-mail."
+            value=""
+            formControlName="email"
+            name="email"
+          />
+        </mat-form-field>
+
+        <div class="password-cont">
+          <mat-form-field class="frmfield-inpt" id="pass-inpt">
+            <mat-label class="lbl-inpt">Clave</mat-label>
+            <input
+              class="inpt"
+              matInput
+              placeholder="Usa entre 6 y 20 caracteres."
+              formControlName="password"
+              name="password"
+              value=""
+            />
+          </mat-form-field>
+
+          <mat-form-field class="frmfield-inpt" id="pass-inpt">
+            <mat-label class="lbl-inpt">Confirmar clave</mat-label>
+            <input
+              class="inpt"
+              matInput
+              placeholder="Tiene que ser igual a la clave."
+              formControlName="passwordconfirm"
+              name="passwordconfirm"
+              value=""
+            />
+          </mat-form-field>
+        </div>
+        
+      </div>
+      <div
+          *ngIf="
+            registerForm.controls.email.invalid &&
+            (registerForm.controls.email.dirty ||
+              registerForm.controls.email.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="registerForm.controls.email.errors?.['required']">
+            El email es requerido.
+          </div>
+          <div *ngIf="registerForm.controls.email.errors?.['email']">
+            El formato del e-mail no es el correcto.
+          </div>
+        </div>
+        <div
+        *ngIf="
+          registerForm.controls.password.invalid &&
+          (registerForm.controls.password.dirty ||
+            registerForm.controls.password.touched) &&
+          registerForm.controls.passwordconfirm.invalid &&
+          (registerForm.controls.passwordconfirm.dirty ||
+            registerForm.controls.passwordconfirm.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div
+          *ngIf="registerForm.controls.password.errors?.['required'] || registerForm.controls.passwordconfirm.errors?.['required']"
+        >
+          El clave es requerida.
+        </div>
+        <div
+          *ngIf="registerForm.controls.password.errors?.['pattern'] && registerForm.controls.passwordconfirm.errors?.['pattern']"
+        >
+          La clave debe contener: 1 numero, 1 letra mayuscula, 1 caracter
+          especial.
+        </div>
+      </div>
+      <div class="alert alert-danger" id="notmatchedlabel" *ngIf="registerForm.errors?.['notmatched']">
+        Las claves no coinciden.
+      </div>
+    </mat-card>
+    <h1 class="register-text-title">Datos de la sucursal</h1>
+
+    <!-- Mechanics card -->
+
+    <!-- /////////////////////////////////////////////////////////////////////////////////// -->
+
+    <mat-card class="card-personal-data" id="cardmechanics">
+      <div class="horiz-cont" id="hcontm">
+        <mat-form-field class="frm-field" id="ddcont">
+          <mat-label class="slct-lbl">Tipo de vehiculo</mat-label>
+          <mat-select  name="typeOfVehicle_select" class="slct" (valueChange)="getGlobalServicesByOption($event)">
+            <mat-option
+            name="typeOfVehicle_select"
+            formControlName="typeOfVehicle_select"
+              ngDefaultControl
+              *ngFor="let v of vehicles"
+              [value]="v"
+              >{{ v.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Nombre</mat-label>
+          <input
+          formControlName="businessName"
+          name="businessName"
+            class="inpt"
+            matInput
+            placeholder="Ingresa el nombre comercial."
+            value=""
+          />
+        </mat-form-field>
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Telefono de contacto</mat-label>
+          <input
+          formControlName="businessContact"
+          name="businessContact"
+            class="inpt"
+            matInput
+            placeholder="Ingresa telefono de contacto."
+            value=""
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="horiz-cont" id="hcontm">
+        <mat-form-field class="frm-field" id="ddcont">
+          <mat-label class="slct-lbl">Pais</mat-label>
+          <mat-select name="country_select" class="slct" (valueChange)="getProvincesByCountryId($event)" >
+            <mat-option
+            formControlName="country_select"
+              ngDefaultControl
+              *ngFor="let c of countryList"
+              [value]="c"
+              >{{ c.countryName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="frm-field" id="ddcont">
+          <mat-label class="slct-lbl">Provincia</mat-label>
+          <mat-select name="province_select" class="slct" (valueChange)="getCitiesByProvinceId($event)">
+            <mat-option
+            formControlName="province_select"
+              ngDefaultControl
+              *ngFor="let p of provinceList"
+              [value]="p"
+              >{{ p.provinceName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="frm-field" id="ddcont">
+          <mat-label class="slct-lbl"  >Ciudad</mat-label>
+          <mat-select name="city_select" class="slct" (valueChange)="getCityId($event)">
+            <mat-option
+            formControlName="city_select"
+              ngDefaultControl
+              *ngFor="let c of citiesList"
+              [value]="c"
+              >{{ c.cityName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="horiz-cont" id="hcontm">
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Direccion.</mat-label>
+          <input
+          formControlName="address"
+          name="address"
+            class="inpt"
+            matInput
+            placeholder="Ingresa la direccion del establecimiento."
+            value=""
+          />
+        </mat-form-field>
+
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Pagina web</mat-label>
+          <input
+          formControlName="weburl"
+          name="weburl"
+            class="inpt"
+            matInput
+            placeholder="Si tienen pagina web agrega su direccion aqui."
+            value=""
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="horiz-cont" id="hcontm">
+        <mat-form-field class="frmfield-inpt">
+          <mat-label class="lbl-inpt">Descripcion</mat-label>
+          <input
+          formControlName="description"
+          name="description"
+            class="inpt"
+            matInput
+            placeholder="Ingresa detalles importantes."
+            value=""
+          />
+        </mat-form-field>
+
+        <mat-form-field class="frm-field" id="ddcont">
+          <mat-label class="slct-lbl">Servicios</mat-label>
+          <mat-select class="slct" (valueChange)="getSelectedService($event)">
+            <mat-option
+              formControlName="services_select"
+              ngDefaultControl
+              *ngFor="let s of gmsList"
+              [value]="s"
+              >{{ s.gmsName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="horiz-cont" id="hcontm-chips">
+        <mat-chip-list
+          class="service-chip-cont"
+          cdkDropList
+          cdkDropListOrientation="horizontal"
+          
+        >
+          <mat-chip class="service-box" cdkDrag *ngFor="let items of chipList"  (click)="removeChip(items)" >
+            {{ items.name }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </mat-card>
+
+    <div class="btn-cont">
+      <button class="btn-continue" mat-raised-button color="accent" (click)="registerUser()">
+        Registrarse
+      </button>
+    </div>
+  </form>
+
+  <mat-toolbar class="tfooter"> </mat-toolbar>
+</div>

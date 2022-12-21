@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavHeaderSimpleComponent implements OnInit {
 
+  imageSrc = 'assets/images/WikiMovilNoB.png';
+  imageAlt = 'Logo';
+  
   constructor() { }
 
   ngOnInit(): void {
