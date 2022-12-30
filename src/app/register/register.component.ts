@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import {
   FormControl,
@@ -19,7 +20,8 @@ import { ToastServiceService } from '../_services/toast-service.service';
 export class RegisterComponent implements OnInit {
   constructor(
     private http: HttpClient,
-    private notifyService: ToastServiceService
+    private notifyService: ToastServiceService,
+    private router: Router
    
   ) {}
 
@@ -82,6 +84,7 @@ export class RegisterComponent implements OnInit {
             console.log('status: ' + response.status);
             if (response.status == 200) {
               this.showToasterSuccess();
+              this.router.navigate(['/login']);
             }
           },
           (error) => {

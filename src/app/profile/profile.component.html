@@ -1,0 +1,256 @@
+<app-nav-header-simple></app-nav-header-simple>
+<div class="uk-container uk-container-expand">
+  <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+    <form>
+      <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Perfil</legend>
+
+        <div class="uk-flex uk-margin-top">
+          <div class="uk-flex uk-flex-column uk-width-1-3">
+            <p class="uk-text-small">Nombre</p>
+            <input
+              #nameInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+              value="{{ currentUser.name }}"
+            />
+          </div>
+
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-3">
+            <p class="uk-text-small">Apellido</p>
+            <input
+              #lastnameInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+              value="{{ currentUser.lastname }}"
+            />
+          </div>
+
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-3">
+            <p class="uk-text-small">Telefono</p>
+            <input
+              #phoneInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+              value="{{ currentUser.phoneNumber }}"
+            />
+          </div>
+        </div>
+        <button
+          (click)="updateProfile()"
+          class="uk-align-right uk-button uk-button-secondary uk-margin-top btn-save"
+        >
+          Guardar Cambios
+        </button>
+        <button
+          (click)="logOut()"
+          class="uk-align-right uk-button uk-button-secondary uk-margin-top btn-logout"
+        >
+          Cerrar Sesion
+        </button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="uk-card uk-card-default uk-card-body uk-margin-top">
+    <form [formGroup]="registerForm">
+      <fieldset class="uk-fieldset">
+        <legend class="uk-legend">Agregar Sucursal</legend>
+
+        <div class="uk-flex uk-margin-top">
+          <div class="uk-flex uk-flex-column uk-width-1-3">
+            <p class="uk-text-small">Tipo de vehiculo</p>
+            <select
+              name="typeOfVehicle_select"
+              formControlName="typeOfVehicle_select"
+              ngDefaultControl
+              class="uk-select"
+              aria-label="Select"
+              (change)="getGlobalServicesByOption()"
+            >
+              <option *ngFor="let v of vehicles" [ngValue]="v">
+                {{ v.name }}
+              </option>
+            </select>
+          </div>
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-3">
+            <p class="uk-text-small">Nombre</p>
+            <input
+              formControlName="businessName"
+              name="businessName"
+              matInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+            />
+          </div>
+
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-3">
+            <p class="uk-text-small">Telefono de Contacto</p>
+            <input
+              formControlName="businessContact"
+              name="businessContact"
+              matInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+            />
+          </div>
+        </div>
+
+        <div class="uk-flex uk-margin-top">
+          <div class="uk-flex uk-flex-column uk-width-1-3">
+            <p class="uk-text-small">Pais</p>
+            <select
+              formControlName="country_select"
+              name="country_select"
+              class="uk-select"
+              ngDefaultControl
+              (change)="getProvincesByCountryId()"
+            >
+              <option *ngFor="let c of countryList" [ngValue]="c">
+                {{ c.countryName }}
+              </option>
+            </select>
+          </div>
+          <div class="uk-flex uk-flex-column uk-width-1-3">
+            <p class="uk-text-small">Provincia</p>
+            <select
+              formControlName="province_select"
+              ngDefaultControl
+              name="province_select"
+              class="uk-select"
+              (change)="getCitiesByProvinceId()"
+            >
+              <option *ngFor="let p of provinceList" [ngValue]="p">
+                {{ p.provinceName }}
+              </option>
+            </select>
+          </div>
+          <div class="uk-flex uk-flex-column uk-width-1-3">
+            <p class="uk-text-small">Ciudad</p>
+            <select
+              formControlName="city_select"
+              ngDefaultControl
+              name="city_select"
+              class="uk-select"
+              aria-label="Select"
+            >
+              <option *ngFor="let c of citiesList" [ngValue]="c">
+                {{ c.cityName }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="uk-flex uk-margin-top">
+          <div class="uk-flex uk-flex-column uk-width-1-2">
+            <p class="uk-text-small">Direccion</p>
+            <input
+              formControlName="address"
+              name="address"
+              matInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+            />
+          </div>
+
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-2">
+            <p class="uk-text-small">Pagina Web</p>
+            <input
+              formControlName="weburl"
+              name="weburl"
+              matInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+            />
+          </div>
+        </div>
+
+        <div class="uk-flex uk-margin-top">
+          <div class="uk-flex uk-flex-column uk-width-1-2">
+            <p class="uk-text-small">Descripcion</p>
+            <input
+              formControlName="description"
+              name="description"
+              matInput
+              class="uk-input"
+              type="text"
+              placeholder="Input"
+              aria-label="Input"
+            />
+          </div>
+
+          <div class="uk-flex uk-flex-column uk-margin-left uk-width-1-2">
+            <p class="uk-text-small">Servicios</p>
+            <select
+              class="uk-select"
+              aria-label="Select"
+              formControlName="services_select"
+              ngDefaultControl
+              (change)="getSelectedService()"
+            >
+              <option *ngFor="let s of gmsList" [ngValue]="s">
+                {{ s.gmsName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button
+          class="uk-align-right uk-button uk-button-secondary uk-margin-top btn-save"
+          (click)="saveBranch()"
+        >
+          Agregar Sucursal
+        </button>
+      </fieldset>
+    </form>
+    <hr class="uk-divider-icon uk-margin-top uk-margin-bottom" />
+    <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+      <p
+        class="uk-text-default uk-width-1-4 uk-margin-left chip"
+        *ngFor="let chip of chipList"
+        (click)="removeChip(chip)"
+      >
+        {{ chip.name + ": " + chip.price }}
+      </p>
+    </div>
+  </div>
+  <hr class="uk-divider-icon uk-margin-top uk-margin-bottom" />
+  <ul class="uk-list" *ngFor="let h of homeList">
+    <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
+
+      
+      <div class="uk-flex uk-flex-between">
+        <h3 class="uk-text-lead uk-text-bold">{{ h.name }}</h3>
+        <span (click)="deleteBranch(h.branchMechanicsId)" class="uk-margin-small-right icon-delete" uk-icon="trash"></span>
+      </div>
+      <p class="uk-text-normal">{{ h.description }}</p>
+      <a class="uk-text-small uk-text-bold uk-align-center">{{ h.webPage }} </a>
+      <p class="uk-text-small uk-text-light">
+        {{ "Contacto: " + h.contactPhone }}
+      </p>
+      <p class="uk-text-small uk-text-light">Servicios</p>
+      <div class="uk-grid-small uk-child-width-expand@s uk-text-center" uk-grid>
+        <p
+          class="uk-text-default uk-width-1-3 uk-margin-left chip"
+          *ngFor="let c of h.mechservices"
+          
+        >
+          {{ c.mechanicServicesName + ": " + c.price+"$" }}
+        </p>
+      </div>
+    </div>
+    
+  </ul>
+</div>

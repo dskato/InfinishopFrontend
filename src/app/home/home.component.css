@@ -10,3 +10,9 @@
 .iconLike:hover{
     color: red!important;
 }
+.chip{
+    background-color: #cfa11b!important;
+    border-radius: 12px;
+    color: white;
+    padding: 10px;
+}

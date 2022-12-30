@@ -37,12 +37,17 @@
           </ul>
         </div>
       </li>
+      
+      
     </ul>
   </div>
   <div class="uk-navbar-right">
+    <span uk-icon="refresh" (click)="refreshHomeLs()" class="uk-margin-right icon-refresh"></span>
+
     <button
       id="btn-search"
       class="uk-button uk-button-default uk-margin-small-right"
+      (click)="retoFiltro()"
     >
       Buscar
     </button>
@@ -51,7 +56,7 @@
       class="uk-button uk-button-default uk-margin-small-right"
       (click)="navigateToLogIn()"
     >
-      Iniciar Sesion
+      {{this.initButtonName}}
     </button>
   </div>
 </nav>

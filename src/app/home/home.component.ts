@@ -1,8 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable, Subject } from 'rxjs';
+
+//------------------------------------------------------------------
+//INTERFACES
+//------------------------------------------------------------------
+
+export interface Comment {
+  commentId: number;
+  branchId: number;
+  appUserId: number;
+  commentary: string;
+}
 
 export interface HomeList {
   branchMechanicsId: any;
@@ -15,6 +27,12 @@ export interface HomeList {
   typeOfVehicle: string;
   mechanicServices: any;
   adresses: any;
+  numOfLikes: any;
+  comment : any;
+  mechservices: any;
+  adress: any;
+  province: any;
+  city: any;
 }
 
 export interface User {
@@ -23,13 +41,27 @@ export interface User {
   email: string;
 }
 
+export interface FilterCriteria{
+  provincia: any;
+  servicios: any;
+}
+
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  public homeList: HomeList[] = [];
+  //HTML Elements
+  @ViewChild('commentInput')
+  commentInput!: ElementRef;
+
+  @ViewChild('navheader') navHeaderComp: any;
+
+  @Input() public homeList: HomeList[] = [];
   public link: string = '';
   jwtHelper = new JwtHelperService();
 
@@ -42,7 +74,7 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getAllBranches();
+    //this.getAllBranches();
     var decodedToken = this.jwtHelper.decodeToken(Cookie.get('jwtToken'));
     this.http
       .get<any>(
@@ -55,35 +87,125 @@ export class HomeComponent implements OnInit {
         this.currentUser.id = data.id;
         this.currentUser.name = data.name;
       });
+
+      
   }
 
-  getLikesById(event: any) : number{
-    var currentBranchId = event.branchMechanicsId;
-    var numOfLikes = 1;
-    this.http
-      .post<any>('https://localhost:7010/api/Home/GetAllBranchLikesById/'+currentBranchId, {
-        branchId: Number(currentBranchId),
-      })
-      .subscribe((response: any) => {
-        console.log('res: ' + response);
-      });
-      return numOfLikes;
+  //------------------------------------------------------------------
+  //LIKES
+  //------------------------------------------------------------------
+  async getLikesById(id: number) {
+    const numOfLikes = await this.http
+      .get<number>('https://localhost:7010/api/Home/GetBranchLikesByID/' + id)
+      .toPromise();
+    return numOfLikes;
   }
 
   doLike(event: any) {
     var currentBranchId = event.branchMechanicsId;
     console.log('currentID: ' + currentBranchId);
-    console.log('appUserId: '+Number(this.currentUser.id))
+    console.log('appUserId: ' + Number(this.currentUser.id));
     this.http
       .post<any>('https://localhost:7010/api/home/likebranch', {
         branchId: Number(currentBranchId),
-        appUserId: Number(this.currentUser.id)
+        appUserId: Number(this.currentUser.id),
       })
       .subscribe((response: any) => {
         console.log('res: ' + response);
       });
+    this.getAllBranches();
+  }
+  //------------------------------------------------------------------
+  //------------------------------------------------------------------
+
+  //------------------------------------------------------------------
+  //COMMENTS
+  //------------------------------------------------------------------
+
+  doComment(event: any) {
+    const inputText = this.commentInput.nativeElement.value;
+    console.log('comment: ' + inputText);
+
+    this.http
+      .post<any>('https://localhost:7010/api/home/commentbranch', {
+        branchId: Number(event.branchMechanicsId),
+        appUserId: Number(this.currentUser.id),
+        comment: inputText,
+      })
+      .subscribe((response: any) => {
+        console.log('res: ' + response);
+      });
+    this.getAllBranches();
   }
 
+  async getCommentById(id: number) {
+    var listOfComments = await this.http
+      .get<number>('https://localhost:7010/api/Home/GetAllBranchCommentsById/' + id)
+      .toPromise();
+    return listOfComments;
+  }
+
+  deleteCommentById(event : any){
+
+    var commentId = event.commentId;
+    var commentUserId = event.appUserId;
+    console.log("currentId: "+ this.currentUser.id + "fromEvent: "+ commentUserId)
+    console.log("commentID: "+ commentId)
+    if(this.currentUser.id == commentUserId){
+      this.http.delete<any>('https://localhost:7010/api/Home/DeleteComment/'+commentId).subscribe((response: any) => {
+        console.log('delete res: ' + response);
+        
+      });
+      this.getAllBranches();
+    }
+
+
+  }
+  //------------------------------------------------------------------
+  //------------------------------------------------------------------
+
+  //------------------------------------------------------------------
+  //MECH SERVICES
+  //------------------------------------------------------------------
+ 
+  async getMechServicesById(id: number) {
+    var listOfServices = await this.http
+      .get<any>('https://localhost:7010/api/Home/GetAllMechanicalServicesById/' + id)
+      .toPromise();
+    return listOfServices;
+  }
+
+  //------------------------------------------------------------------
+  //------------------------------------------------------------------
+
+  //------------------------------------------------------------------
+  //ADRESS
+  //------------------------------------------------------------------
+ 
+  async getAdressById(id: number) {
+    var currentAdress = await this.http
+      .get<any>('https://localhost:7010/api/Home/GetBranchAdressById/' + id)
+      .toPromise();
+    return currentAdress;
+  }
+
+  async getProvinceById(id: number) {
+    var currentProvince = await this.http
+      .get<any>('https://localhost:7010/api/Location/GetProvinceById/' + id)
+      .toPromise();
+    return currentProvince;
+  }
+
+  async getCityById(id: number) {
+    var currentCity = await this.http
+      .get<any>('https://localhost:7010/api/Location/GetCityById/' + id)
+      .toPromise();
+    return currentCity;
+  }
+
+  //------------------------------------------------------------------
+  //------------------------------------------------------------------
+  
   logout(): void {
     Cookie.delete('jwtToken');
     this.router.navigate(['/login']);
@@ -94,12 +216,22 @@ export class HomeComponent implements OnInit {
     console.log('link clicked: ' + this.link);
   }
 
+  updateHomeLs(newList: any[]){
+    this.homeList = newList;
+  }
+
+  
+
   getAllBranches() {
     this.homeList = [];
     this.http
       .get<any>('https://localhost:7010/api/Home/GetAllBranchs')
-      .subscribe((data) => {
+      .subscribe(async (data) => {
         for (const d of data as any) {
+          var addrInfo = await this.getAdressById(d.branchMechanicsId);
+          var cityInfo = await this.getCityById(addrInfo.cityId);
+
+          console.log("waaa: "+ addrInfo.cityId);
           this.homeList.push({
             branchMechanicsId: d.branchMechanicsId,
             appUserId: d.appUserId,
@@ -111,9 +243,15 @@ export class HomeComponent implements OnInit {
             typeOfVehicle: d.typeOfVehicle,
             mechanicServices: d.mechanicServices,
             adresses: d.adresses,
+            numOfLikes: await this.getLikesById(d.branchMechanicsId),
+            comment: await this.getCommentById(d.branchMechanicsId),
+            mechservices: await this.getMechServicesById(d.branchMechanicsId),
+            adress: await this.getAdressById(d.branchMechanicsId),
+            province: await this.getProvinceById(cityInfo.provinceId),
+            city: await this.getCityById(addrInfo.cityId)
           });
         }
-        console.log('home ls: ' + JSON.stringify(this.homeList));
+        //console.log('home ls: ' + JSON.stringify(this.homeList));
       });
   }
 }

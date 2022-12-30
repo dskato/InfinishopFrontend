@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterOptionsComponent } from './register-options/register-options.component';
 import { AuthGuardService as AuthGuard } from './_services/auth-guard.service';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'registeroption', component: RegisterOptionsComponent },
   { path: 'registermch', component: RegisterMechanicComponent },
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '**', component: PageNotFoundComponent },
 ];
 

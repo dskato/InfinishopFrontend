@@ -11,3 +11,11 @@
 #btn-search:hover {
   background-color: #cfa11b !important;
 }
+
+.icon-refresh{
+  color: white !important;
+}
+
+.icon-refresh:hover{
+  color: rgb(184, 184, 184) !important;
+}

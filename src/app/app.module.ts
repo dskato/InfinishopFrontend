@@ -43,6 +43,7 @@ import {
 import { RegisterOptionsComponent } from './register-options/register-options.component';
 import { RegisterMechanicComponent } from './register-mechanic/register-mechanic.component';
 import { AddpriceDialogComponent } from './dialogs/addprice-dialog/addprice-dialog.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const googleLoginOptions = {
   scope: 'profile email',
@@ -61,6 +62,7 @@ const googleLoginOptions = {
     RegisterOptionsComponent,
     RegisterMechanicComponent,
     AddpriceDialogComponent,
+    ProfileComponent,
   ],
   imports: [
     CollapseModule.forRoot(),
